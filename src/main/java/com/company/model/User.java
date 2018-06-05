@@ -1,7 +1,9 @@
 package com.company.model;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -27,13 +29,14 @@ public class User {
 	private String mobilenumber;
 	private boolean active;
 	private double salary;
+	private List<WorkingDay> workingdays=new ArrayList<>();
 	
 
 	public User() {
 	}
 
 	public User(long user_id, String user_name, String surname, String userName, String passworld, String codiceFiscale,
-			SimpleDateFormat birthday, Address address, String tellNumber, String mobilenumber, boolean active,
+			Date birthday, Address address, String tellNumber, String mobilenumber, boolean active,
 			double salary) {
 
 		this.user_id = user_id;
@@ -98,11 +101,11 @@ public class User {
 		this.codiceFiscale = codiceFiscale;
 	}
 
-	public SimpleDateFormat getBirthday() {
+	public Date getBirthday() {
 		return Birthday;
 	}
 
-	public void setBirthday(SimpleDateFormat birthday) {
+	public void setBirthday(Date birthday) {
 		Birthday = birthday;
 	}
 
