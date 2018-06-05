@@ -80,6 +80,30 @@ public class UserDao {
 		return list;
 
 	}
+	public User getUserByUserName(String username) {
+		User u=null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			Query query=session.createQuery("from User where userName=:username");
+			query.setString("username", username);
+            u= (User) query.uniqueResult();
+			tx.commit();
+			
+		} catch (Exception ex) {
+
+			tx.rollback();
+
+		} finally {
+			session.close();
+		}
+
+		return u;
+
+	}
 	public boolean updateUser(User u) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();

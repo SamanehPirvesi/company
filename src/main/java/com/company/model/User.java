@@ -26,7 +26,7 @@ public class User {
 	private String userName;
 	private String passworld;
 	private String codiceFiscale;
-	private Date Birthday;
+	private Date Birthday=new Date();
 	@Embedded
 	private Address address;
 	private String tellNumber;
@@ -41,16 +41,14 @@ public class User {
 	public User() {
 	}
 
-	public User(long user_id, String user_name, String surname, String userName, String passworld, String codiceFiscale,
-			Date birthday, Address address, String tellNumber, String mobilenumber, boolean active, double salary) {
+	public User(String user_name, String surname, String userName, String passworld, String codiceFiscale,
+			 Address address, String tellNumber, String mobilenumber, boolean active, double salary) {
 
-		this.user_id = user_id;
 		this.user_name = user_name;
 		this.surname = surname;
 		this.userName = userName;
 		this.passworld = passworld;
 		this.codiceFiscale = codiceFiscale;
-		Birthday = birthday;
 		this.address = address;
 		this.tellNumber = tellNumber;
 		this.mobilenumber = mobilenumber;

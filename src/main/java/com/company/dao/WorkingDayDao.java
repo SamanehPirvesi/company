@@ -7,7 +7,7 @@ import com.company.model.WorkingDay;
 
 import hibernateUtil.HibernateUtil;
 
-public class WorkindDayDao {
+public class WorkingDayDao {
 	public boolean createWorkingDay(WorkingDay wd) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();

@@ -19,7 +19,7 @@
     <!--   JDBC connection pool (use the built-in) -->
     <property name="connection.pool_size">10</property>
     <!--  SQL dialect -->
-     <property name="dialect">org.hibernate.dialect.MySQLDialect</property> 
+     <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property> 
     <!--  <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property> -->
 
     <!--   Disable the second-level cache -->
@@ -30,9 +30,9 @@
     <property name="hbm2ddl.auto">update</property>
     
     
-   <mapping class="com.company.model.Company" />
+     <mapping class="com.company.model.Company" />
    <mapping class="com.company.model.User" />
-   <mapping class="com.company.model.WorkingDay" />
+     <mapping class="com.company.model.WorkingDay" />
     <!-- <mapping class="model.Voce" /> -->
     
 
