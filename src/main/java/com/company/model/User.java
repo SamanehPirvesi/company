@@ -1,43 +1,48 @@
 package com.company.model;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long user_id;
 	private String user_name;
 	private String surname;
-	@Column(unique=true)
+	@Column(unique = true)
 	private String userName;
 	private String passworld;
 	private String codiceFiscale;
-	private Date Birthday  ;
+	private Date Birthday;
 	@Embedded
 	private Address address;
 	private String tellNumber;
 	private String mobilenumber;
 	private boolean active;
 	private double salary;
-	private List<WorkingDay> workingdays=new ArrayList<>();
-	
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<WorkingDay> workingdays = new ArrayList<>();
+	@ManyToOne
+	private Company company;
 
 	public User() {
 	}
 
 	public User(long user_id, String user_name, String surname, String userName, String passworld, String codiceFiscale,
-			Date birthday, Address address, String tellNumber, String mobilenumber, boolean active,
-			double salary) {
+			Date birthday, Address address, String tellNumber, String mobilenumber, boolean active, double salary) {
 
 		this.user_id = user_id;
 		this.user_name = user_name;
@@ -147,6 +152,27 @@ public class User {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+	public List<WorkingDay> getWorkingdays() {
+		return workingdays;
+	}
+
+	public void setWorkingdays(List<WorkingDay> workingdays) {
+		this.workingdays = workingdays;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public void addWorkingDays(WorkingDay workingDay) {
+		workingdays.add(workingDay);
+
 	}
 
 }

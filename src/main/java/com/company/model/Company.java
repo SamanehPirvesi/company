@@ -3,14 +3,22 @@ package com.company.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Company {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long company_id;
 	private String company_name;
 	private String p_iva;
+	@OneToMany(mappedBy="company",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<User> users = new ArrayList<>();
 
 	public Company() {
@@ -44,6 +52,9 @@ public class Company {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	public void addUsers(User user) {
+		users.add(user);
 	}
 
 }

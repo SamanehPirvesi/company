@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class WorkingDay {
@@ -14,6 +15,8 @@ public class WorkingDay {
 	private LocalTime finishTime;
 	private boolean ferie;
 	private LocalTime hoursPermission;
+	@ManyToOne
+	private User user;
 
 	public WorkingDay() {
 
@@ -66,6 +69,14 @@ public class WorkingDay {
 
 	public void setHoursPermission(LocalTime hoursPermission) {
 		this.hoursPermission = hoursPermission;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
