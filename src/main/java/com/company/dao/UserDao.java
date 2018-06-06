@@ -378,29 +378,6 @@ public class UserDao {
 	 * @param passworld
 	 * @return
 	 */
-	public boolean deleteUserById(long id) {
-		boolean res = false;
-		Session session = HibernateUtil.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.getTransaction();
-			tx.begin();
-
-			Query query = session.createQuery("DELETE User WHERE user_id=:USERID");
-			query.setLong("USERID", id);
-
-			query.executeUpdate();
-			res = true;
-		} catch (Exception ex) {
-
-			tx.rollback();
-
-		} finally {
-			session.close();
-		}
-
-		return res;
-
-	}
+	
 
 }

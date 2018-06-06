@@ -72,10 +72,12 @@ public class Main {
 		wd3.setFinishTime(t6);
 		wd3.setUser(u3);
 		u3.addWorkingDays(wd3);
+//		
+//		Company company=cDao.getCompanyById(1);
+//		u3.setCompany(company);
+		double f=DateUtil.calculateHours(t6, t5);
 		
-		Company company=cDao.getCompanyById(1);
-		u3.setCompany(company);
-		
+		System.out.println(f);
 		// wdDao.createWorkingDay(wd1);
 //		uDao.createUser(u3);
 //		 cDao.createCompany(c1);
@@ -88,7 +90,9 @@ public class Main {
 //		uDao.deleteUserById(6);
 //		uDao.activeExsistentUserByUsername("saraahmadi");
 //		uDao.deactiveExsistentUserByUsername("saraahmadi");
-		cDao.getListOfUserForCompany(1).stream().map(m->m.getSurname()).forEach(System.out::println);
+//		cDao.getListOfUserForCompany(1).stream().map(m->m.getSurname()).forEach(System.out::println);
+//	User u=uDao.getUserById(6);
+//	uDao.deleteUser(u);
 		
 	}
 
