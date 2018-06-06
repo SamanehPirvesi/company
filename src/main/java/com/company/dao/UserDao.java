@@ -11,7 +11,7 @@ import utility.HibernateUtil;
 
 public class UserDao {
 	/**
-	 * use for create table in the DB
+	 * use for adding data in user table in the DB
 	 * 
 	 * @param u
 	 * @return
@@ -161,13 +161,15 @@ public class UserDao {
 		return list;
 
 	}
+
 	/**
 	 * if the user is active return true else return false
+	 * 
 	 * @param username
 	 * @return
 	 */
 	public boolean isUserActive(long id) {
-		boolean result=false;
+		boolean result = false;
 		User u;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -178,7 +180,7 @@ public class UserDao {
 			Query query = session.createQuery("from User where user_id=:userid");
 			query.setLong("userid", id);
 			u = (User) query.uniqueResult();
-			result=u.isActive();
+			result = u.isActive();
 			tx.commit();
 
 		} catch (Exception ex) {
@@ -254,8 +256,10 @@ public class UserDao {
 		}
 		return res;
 	}
+
 	/**
 	 * take the user name and update the passworld
+	 * 
 	 * @param id
 	 * @param name
 	 * @return
@@ -280,13 +284,15 @@ public class UserDao {
 		}
 		return res;
 	}
+
 	/**
 	 * this method use when we want active the user with the username
+	 * 
 	 * @param username
 	 * @param passworld
 	 * @return
 	 */
-	
+
 	public boolean activeExsistentUserByUsername(String username) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
@@ -296,7 +302,7 @@ public class UserDao {
 			tx.begin();
 
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
-			query.setBoolean("active",true);
+			query.setBoolean("active", true);
 			query.setString("username", username);
 			query.executeUpdate();
 			res = true;
@@ -307,12 +313,14 @@ public class UserDao {
 		}
 		return res;
 	}
-	/**use for deactive the user
+
+	/**
+	 * use for deactive the user
 	 * 
 	 * @param username
 	 * @return
 	 */
-	public boolean diactiveExsistentUserByUsername(String username) {
+	public boolean deactiveExsistentUserByUsername(String username) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -321,7 +329,7 @@ public class UserDao {
 			tx.begin();
 
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
-			query.setBoolean("active",false);
+			query.setBoolean("active", false);
 			query.setString("username", username);
 			query.executeUpdate();
 			res = true;
@@ -332,6 +340,7 @@ public class UserDao {
 		}
 		return res;
 	}
+
 	/**
 	 * first read data from DB after that delete select data
 	 * 
@@ -361,8 +370,10 @@ public class UserDao {
 		return res;
 
 	}
+
 	/**
 	 * delete the user first take the user id and after that delete it
+	 * 
 	 * @param username
 	 * @param passworld
 	 * @return
@@ -377,7 +388,7 @@ public class UserDao {
 
 			Query query = session.createQuery("DELETE User WHERE user_id=:USERID");
 			query.setLong("USERID", id);
-			
+
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
@@ -391,6 +402,5 @@ public class UserDao {
 		return res;
 
 	}
-
 
 }

@@ -87,7 +87,9 @@ public class Main {
 //		uDao.updatePassworldByUsername("zazizi", "a7869");
 //		uDao.deleteUserById(6);
 //		uDao.activeExsistentUserByUsername("saraahmadi");
-		uDao.diactiveExsistentUserByUsername("saraahmadi");
+//		uDao.deactiveExsistentUserByUsername("saraahmadi");
+		cDao.getListOfUserForCompany(1).stream().map(m->m.getSurname()).forEach(System.out::println);
+		
 	}
 
 }
