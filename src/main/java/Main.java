@@ -82,7 +82,12 @@ public class Main {
 		// cDao.createCompany(c1);
 		// User user=uDao.getUserByUserName("saraahmadi");
 		// System.out.println(user.getUserName()+user.getMobilenumber());
-		uDao.getAllUser().stream().map(m->m.getSurname()).forEach(System.out::println);;
+//		uDao.getAllUser().stream().map(m->m.getSurname()).forEach(System.out::println);
+//		System.out.println(uDao.isUserActive(2));
+//		uDao.updatePassworldByUsername("zazizi", "a7869");
+//		uDao.deleteUserById(6);
+//		uDao.activeExsistentUserByUsername("saraahmadi");
+		uDao.diactiveExsistentUserByUsername("saraahmadi");
 	}
 
 }
