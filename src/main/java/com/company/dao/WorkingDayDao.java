@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.company.model.WorkingDay;
 
-import hibernateUtil.HibernateUtil;
+import utility.HibernateUtil;
 
 public class WorkingDayDao {
 	public boolean createWorkingDay(WorkingDay wd) {

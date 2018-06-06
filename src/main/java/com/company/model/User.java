@@ -167,7 +167,10 @@ public class User {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-
+/**
+ * this method is for adding workingday to list of workingdays  and keep for each user 
+ * @param workingDay
+ */
 	public void addWorkingDays(WorkingDay workingDay) {
 		workingdays.add(workingDay);
 

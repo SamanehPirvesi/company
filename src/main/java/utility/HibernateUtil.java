@@ -1,4 +1,4 @@
-package hibernateUtil;
+package utility;
 
 
 

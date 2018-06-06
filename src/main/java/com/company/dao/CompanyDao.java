@@ -6,7 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.company.model.Company;
-import hibernateUtil.HibernateUtil;
+
+import utility.HibernateUtil;
 
 public class CompanyDao {
 	public boolean createCompany(Company c) {

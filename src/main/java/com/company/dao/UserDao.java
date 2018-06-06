@@ -7,9 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import com.company.model.User;
 
-import hibernateUtil.HibernateUtil;
+import utility.HibernateUtil;
 
 public class UserDao {
+	/**
+	 * use for create table in the DB
+	 * @param u
+	 * @return
+	 */
 	public boolean createUser(User u) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
@@ -33,6 +38,11 @@ public class UserDao {
 		return res;
 
 	}
+	/**
+	 * use for read user by id from DB
+	 * @param id
+	 * @return
+	 */
 	public User getUserById(long id) {
 		User u = null;
 		Session session = HibernateUtil.openSession();
@@ -56,6 +66,11 @@ public class UserDao {
 		return u;
 
 	}
+	/**
+	 * read from DB by name and if exsit same name keep in the list
+	 * @param name
+	 * @return
+	 */
 	public List<User> getUserByName(String name) {
 		List<User> list = null;
 		Session session = HibernateUtil.openSession();
@@ -80,6 +95,11 @@ public class UserDao {
 		return list;
 
 	}
+	/**
+	 * read from DB by user name and return one result because username is unique
+	 * @param username
+	 * @return
+	 */
 	public User getUserByUserName(String username) {
 		User u=null;
 		Session session = HibernateUtil.openSession();
@@ -104,6 +124,39 @@ public class UserDao {
 		return u;
 
 	}
+	/**
+	 * return list of all user
+	 * @return
+	 */
+			
+	public List<User> getAllUser() {
+		List<User> list = null;
+		Session session = HibernateUtil.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.getTransaction();
+			tx.begin();
+
+			Query query=session.createQuery("from User ");
+			list=query.getResultList();
+			tx.commit();
+			
+		} catch (Exception ex) {
+
+			tx.rollback();
+
+		} finally {
+			session.close();
+		}
+
+		return list;
+
+	}
+	/**
+	 * when read from DB after that whit this method we can update data
+	 * @param u
+	 * @return
+	 */
 	public boolean updateUser(User u) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
@@ -127,6 +180,12 @@ public class UserDao {
 		return res;
 
 	}
+	/**
+	 * white out need to read from DB only with find by id and after that update our data
+	 * @param id
+	 * @param name
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	public boolean updateUserById(long id , String name) {
 		boolean res = false;
@@ -152,6 +211,11 @@ public class UserDao {
 		return res;
 
 	}
+	/**
+	 * first read data from DB after that delete select data
+	 * @param u
+	 * @return
+	 */
 	public boolean deleteUser(User u) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
