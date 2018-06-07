@@ -100,14 +100,14 @@ public class Main {
 		// uDao.deleteUser(u);
 		// WorkingDay w=wdDao.getWorkingDaywdById(14);
 		// wdDao.deleteWorkingDay(w);
-		// System.out.println(wdDao.GetHoursOfUserByMonth(4,6));
+//		 System.out.println(wdDao.GetHoursOfUserByMonth(4,6));
 		// System.out.println(wdDao.getDaysHolidayForUserByMonth(4,6));
-		// System.out.println(wdDao.GetPermissionHoursForByMonth(4, 6));
-		// System.out.println(wdDao.GetPermissionHoursForByYear(4, 2018));
+//		 System.out.println(wdDao.GetPermissionHoursForByMonth(4, 6));
+		 System.out.println(wdDao.GetPermissionHoursForByYear(4, 2018));
 		// System.out.println(wdDao.getDaysHolidayForUserByYear(4, 2018));
-		WorkingDay workingday = wdDao.getWorkingDaywdById(16);
-		workingday.setHoursPermission(t7);
-		wdDao.updateWorkingDay(workingday);
+//		WorkingDay workingday = wdDao.getWorkingDaywdById(16);
+//		workingday.setHoursPermission(t7);
+//		wdDao.updateWorkingDay(workingday);
 		//
 	}
 
