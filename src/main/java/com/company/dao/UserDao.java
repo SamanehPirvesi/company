@@ -64,7 +64,7 @@ public class UserDao {
 	 * @param name
 	 * @return
 	 */
-	public List<User> getUserByName(String name) {
+	public List<User> getUsersByName(String name) {
 		List<User> list = null;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;

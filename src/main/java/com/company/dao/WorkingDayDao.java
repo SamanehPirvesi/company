@@ -187,7 +187,7 @@ public class WorkingDayDao {
 	 * @param month
 	 * @return
 	 */
-	public int GetPermissionHoursForByMonth(long id, int month) {
+	public int GetPermissionHoursForUserByMonth(long id, int month) {
 		int hour = 0;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
@@ -214,7 +214,7 @@ public class WorkingDayDao {
 	 * @param month
 	 * @return
 	 */
-	public int GetPermissionHoursForByYear(long id, int year) {
+	public int GetPermissionHoursForUserByYear(long id, int year) {
 		int hour = 0;
 
 		Session session = HibernateUtil.openSession();
