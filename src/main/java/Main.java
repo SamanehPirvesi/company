@@ -103,7 +103,7 @@ public class Main {
 //		 System.out.println(wdDao.GetHoursOfUserByMonth(4,6));
 		// System.out.println(wdDao.getDaysHolidayForUserByMonth(4,6));
 //		 System.out.println(wdDao.GetPermissionHoursForByMonth(4, 6));
-		 System.out.println(wdDao.GetPermissionHoursForByYear(4, 2018));
+//		 System.out.println(wdDao.GetPermissionHoursForByYear(4, 2018));
 		// System.out.println(wdDao.getDaysHolidayForUserByYear(4, 2018));
 //		WorkingDay workingday = wdDao.getWorkingDaywdById(16);
 //		workingday.setHoursPermission(t7);
