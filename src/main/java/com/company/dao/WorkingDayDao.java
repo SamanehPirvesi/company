@@ -25,9 +25,7 @@ public class WorkingDayDao {
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
@@ -40,7 +38,6 @@ public class WorkingDayDao {
 	 * @param id
 	 * @return
 	 */
-
 	public WorkingDay getWorkingDaywdById(long id) {
 		WorkingDay wd = null;
 		Session session = HibernateUtil.openSession();
@@ -72,15 +69,11 @@ public class WorkingDayDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			session.update(wd);
-
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
@@ -94,7 +87,6 @@ public class WorkingDayDao {
 	 * @param mounth
 	 * @return
 	 */
-
 	public int GetHoursOfUserByMonth(long id, int month) {
 		int hour = 0;
 		int minute = 0;
@@ -104,26 +96,27 @@ public class WorkingDayDao {
 			tx = session.getTransaction();
 			tx.begin();
 
-//			Query query = session.createNativeQuery(
-//					"SELECT SUM(HOUR(timediff(wd.initTime,wd.finishTime)))FROM workingday as wd WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month");
-//			Query query2 = session.createNativeQuery(
-//					"SELECT SUM(MINUTE(timediff(wd.initTime,wd.finishTime)))FROM workingday as wd WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month");
-//			query.setParameter("userId", id);
-//			query.setParameter("month", month);
-//			query2.setParameter("userId", id);
-//			query2.setParameter("month", month);
-//			hour = Integer.parseInt(query.getSingleResult().toString());
-//			minute = Integer.parseInt(query2.getSingleResult().toString());
-//			if (minute > 30) {
-//				hour += 1;
-//			}
-			Query query = session.createNativeQuery("SELECT ABS(ROUND((SUM(TIME_TO_SEC(timediff(wd.initTime,wd.finishTime)))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
-			
+			// Query query = session.createNativeQuery(
+			// "SELECT SUM(HOUR(timediff(wd.initTime,wd.finishTime)))FROM workingday as wd
+			// WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month");
+			// Query query2 = session.createNativeQuery(
+			// "SELECT SUM(MINUTE(timediff(wd.initTime,wd.finishTime)))FROM workingday as wd
+			// WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month");
+			// query.setParameter("userId", id);
+			// query.setParameter("month", month);
+			// query2.setParameter("userId", id);
+			// query2.setParameter("month", month);
+			// hour = Integer.parseInt(query.getSingleResult().toString());
+			// minute = Integer.parseInt(query2.getSingleResult().toString());
+			// if (minute > 30) {
+			// hour += 1;
+			// }
+			Query query = session.createNativeQuery(
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(timediff(wd.initTime,wd.finishTime)))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
 			query.setParameter("userId", id);
 			query.setParameter("month", month);
 			hour = Integer.parseInt(query.getSingleResult().toString());
 		} catch (Exception ex) {
-
 			tx.rollback();
 		} finally {
 			session.close();
@@ -196,18 +189,17 @@ public class WorkingDayDao {
 	 */
 	public int GetPermissionHoursForByMonth(long id, int month) {
 		int hour = 0;
-		
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createNativeQuery("SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
+			Query query = session.createNativeQuery(
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
 			query.setParameter("userId", id);
 			query.setParameter("month", month);
 			hour = Integer.parseInt(query.getSingleResult().toString());
-			} catch (Exception ex) {
-
+		} catch (Exception ex) {
 			tx.rollback();
 		} finally {
 			session.close();
@@ -224,19 +216,18 @@ public class WorkingDayDao {
 	 */
 	public int GetPermissionHoursForByYear(long id, int year) {
 		int hour = 0;
-		
+
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createNativeQuery("SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and YEAR(wd.date)=:year");
+			Query query = session.createNativeQuery(
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and YEAR(wd.date)=:year");
 			query.setParameter("userId", id);
 			query.setParameter("year", year);
 			hour = Integer.parseInt(query.getSingleResult().toString());
-			
 		} catch (Exception ex) {
-
 			tx.rollback();
 		} finally {
 			session.close();
@@ -257,21 +248,15 @@ public class WorkingDayDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			session.delete(wd);
-
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return res;
-
 	}
 
 }

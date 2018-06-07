@@ -26,7 +26,7 @@ public class User {
 	private String userName;
 	private String passworld;
 	private String codiceFiscale;
-	private Date Birthday=new Date();
+	private Date Birthday = new Date();
 	@Embedded
 	private Address address;
 	private String tellNumber;
@@ -42,7 +42,7 @@ public class User {
 	}
 
 	public User(String user_name, String surname, String userName, String passworld, String codiceFiscale,
-			 Address address, String tellNumber, String mobilenumber, boolean active, double salary) {
+			Address address, String tellNumber, String mobilenumber, boolean active, double salary) {
 
 		this.user_name = user_name;
 		this.surname = surname;
@@ -167,13 +167,15 @@ public class User {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-/**
- * this method is for adding workingday to list of workingdays  and keep for each user 
- * @param workingDay
- */
+
+	/**
+	 * this method is for adding workingday to list of workingdays and keep for each
+	 * user
+	 * 
+	 * @param workingDay
+	 */
 	public void addWorkingDays(WorkingDay workingDay) {
 		workingdays.add(workingDay);
-
 	}
 
 }

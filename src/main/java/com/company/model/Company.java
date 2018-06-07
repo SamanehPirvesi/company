@@ -18,7 +18,7 @@ public class Company {
 	private Long company_id;
 	private String company_name;
 	private String p_iva;
-	@OneToMany(mappedBy="company",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<User> users = new ArrayList<>();
 
 	public Company() {
@@ -53,6 +53,7 @@ public class Company {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
 	public void addUsers(User user) {
 		users.add(user);
 	}

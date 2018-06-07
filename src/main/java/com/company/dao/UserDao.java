@@ -23,21 +23,16 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			session.persist(u);
-
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
 
 		} finally {
 			session.close();
 		}
-
 		return res;
-
 	}
 
 	/**
@@ -53,21 +48,14 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			u = session.get(User.class, id);
-
 			tx.commit();
-
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return u;
-
 	}
 
 	/**
@@ -83,22 +71,16 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("from User where user_name=:username");
 			query.setString("username", name);
 			list = query.getResultList();
 			tx.commit();
-
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return list;
-
 	}
 
 	/**
@@ -114,22 +96,16 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("from User where userName=:username");
 			query.setString("username", username);
 			u = (User) query.uniqueResult();
 			tx.commit();
-
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return u;
-
 	}
 
 	/**
@@ -145,21 +121,15 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("from User ");
 			list = query.getResultList();
 			tx.commit();
-
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return list;
-
 	}
 
 	/**
@@ -176,23 +146,17 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("from User where user_id=:userid");
 			query.setLong("userid", id);
 			u = (User) query.uniqueResult();
 			result = u.isActive();
 			tx.commit();
-
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return result;
-
 	}
 
 	/**
@@ -208,21 +172,15 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			session.update(u);
-
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return res;
-
 	}
 
 	/**
@@ -241,16 +199,13 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("UPDATE User SET user_name=:username WHERE user_id=:idnumber");
 			query.setString("username", name);
 			query.setLong("idnumber", id);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
@@ -271,7 +226,6 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("UPDATE User SET passworld=:passworld WHERE userName=:username");
 			query.setString("passworld", passworld);
 			query.setString("username", username);
@@ -300,7 +254,6 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
 			query.setBoolean("active", true);
 			query.setString("username", username);
@@ -327,7 +280,6 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
 			query.setBoolean("active", false);
 			query.setString("username", username);
@@ -354,21 +306,15 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-
 			session.delete(u);
-
 			tx.commit();
 			res = true;
 		} catch (Exception ex) {
-
 			tx.rollback();
-
 		} finally {
 			session.close();
 		}
-
 		return res;
-
 	}
 
 	/**
@@ -378,6 +324,5 @@ public class UserDao {
 	 * @param passworld
 	 * @return
 	 */
-	
 
 }
