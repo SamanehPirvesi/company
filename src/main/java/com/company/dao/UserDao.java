@@ -2,9 +2,11 @@ package com.company.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import com.company.model.User;
 
 import utility.HibernateUtil;
@@ -71,8 +73,8 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from User where user_name=:username");
-			query.setString("username", name);
+			Query<User> query = session.createQuery("from User where user_name=:username",User.class);
+			query.setParameter("username", name);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {
@@ -96,8 +98,8 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from User where userName=:username");
-			query.setString("username", username);
+			Query<User> query = session.createQuery("from User where userName=:username",User.class);
+			query.setParameter("username", username);
 			u = (User) query.uniqueResult();
 			tx.commit();
 		} catch (Exception ex) {
@@ -121,7 +123,7 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from User ");
+			Query<User> query = session.createQuery("from User ",User.class);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {
@@ -146,8 +148,8 @@ public class UserDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("from User where user_id=:userid");
-			query.setLong("userid", id);
+			Query<User> query = session.createQuery("from User where user_id=:userid",User.class);
+			query.setParameter("userid", id);
 			u = (User) query.uniqueResult();
 			result = u.isActive();
 			tx.commit();
@@ -191,7 +193,7 @@ public class UserDao {
 	 * @param name
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
+	
 	public boolean updateUserById(long id, String name) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
@@ -200,8 +202,8 @@ public class UserDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("UPDATE User SET user_name=:username WHERE user_id=:idnumber");
-			query.setString("username", name);
-			query.setLong("idnumber", id);
+			query.setParameter("username", name);
+			query.setParameter("idnumber", id);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
@@ -227,8 +229,8 @@ public class UserDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("UPDATE User SET passworld=:passworld WHERE userName=:username");
-			query.setString("passworld", passworld);
-			query.setString("username", username);
+			query.setParameter("passworld", passworld);
+			query.setParameter("username", username);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
@@ -255,8 +257,8 @@ public class UserDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
-			query.setBoolean("active", true);
-			query.setString("username", username);
+			query.setParameter("active", true);
+			query.setParameter("username", username);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
@@ -281,8 +283,8 @@ public class UserDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createQuery("UPDATE User SET active=:active WHERE userName=:username");
-			query.setBoolean("active", false);
-			query.setString("username", username);
+			query.setParameter("active", false);
+			query.setParameter("username", username);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {

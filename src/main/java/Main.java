@@ -105,11 +105,14 @@ public class Main {
 		// System.out.println(f);
 //			us.createUser(u4);
 		// cs.createCompany(c1);
+//		cs.updateCompanyById(1, "FIAT");
 //		 User user1=us.getUserByUserName("saraahmadi");
 //		 System.out.println(user1.getUserName()+user1.getMobilenumber());
 //		 us.getAllUser().stream().map(m->m.getSurname()).forEach(System.out::println);
-//		 System.out.println(us.isUserActive(2));
-//		 us.updatePassworldByUsername("zazizi", "b675");
+//		 System.out.println(us.isUserActive(4));
+//		 us.updatePassworldByUsername("zazizi", "1234");
+//		us.updateUserById(2,"sara");
+//		us.getUsersByName("sara").stream().forEach(s->System.out.println(s.getSurname()+s.getMobilenumber()));
 //		 us.activeExsistentUserByUsername("saraahmadi");
 //		 us.deactiveExsistentUserByUsername("saraahmadi");
 //		 cs.getListOfUserForCompany(1).stream().map(m->m.getSurname()).forEach(System.out::println);

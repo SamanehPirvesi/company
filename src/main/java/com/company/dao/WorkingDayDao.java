@@ -1,8 +1,9 @@
 package com.company.dao;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import com.company.model.WorkingDay;
 
 import utility.HibernateUtil;
@@ -89,7 +90,6 @@ public class WorkingDayDao {
 	 */
 	public int GetHoursOfUserByMonth(long id, int month) {
 		int hour = 0;
-		int minute = 0;
 		Session session = HibernateUtil.openSession();
 		Transaction tx = null;
 		try {
@@ -112,7 +112,8 @@ public class WorkingDayDao {
 			// hour += 1;
 			// }
 			Query query = session.createNativeQuery(
-					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(timediff(wd.initTime,wd.finishTime)))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(timediff(wd.initTime,wd.finishTime)))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month"
+					);
 			query.setParameter("userId", id);
 			query.setParameter("month", month);
 			hour = Integer.parseInt(query.getSingleResult().toString());
@@ -139,7 +140,8 @@ public class WorkingDayDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createNativeQuery(
-					"SELECT SUM(wd.ferie) FROM workingday as wd WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month");
+					"SELECT SUM(wd.ferie) FROM workingday as wd WHERE wd.user_user_id=:userId and MONTH(wd.date)=:month"
+					);
 			query.setParameter("userId", id);
 			query.setParameter("month", month);
 			counter = Integer.parseInt(query.getSingleResult().toString());
@@ -167,7 +169,8 @@ public class WorkingDayDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createNativeQuery(
-					"SELECT SUM(wd.ferie) FROM workingday as wd WHERE wd.user_user_id=:userId and Year(wd.date)=:year");
+					"SELECT SUM(wd.ferie) FROM workingday as wd WHERE wd.user_user_id=:userId and Year(wd.date)=:year"
+					);
 			query.setParameter("userId", id);
 			query.setParameter("year", year);
 			counter = Integer.parseInt(query.getSingleResult().toString());
@@ -195,7 +198,8 @@ public class WorkingDayDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createNativeQuery(
-					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month");
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and MONTH(wd.date)=:month"
+					);
 			query.setParameter("userId", id);
 			query.setParameter("month", month);
 			hour = Integer.parseInt(query.getSingleResult().toString());
@@ -223,7 +227,8 @@ public class WorkingDayDao {
 			tx = session.getTransaction();
 			tx.begin();
 			Query query = session.createNativeQuery(
-					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and YEAR(wd.date)=:year");
+					"SELECT ABS(ROUND((SUM(TIME_TO_SEC(wd.hoursPermission))/3600))) FROM workingday as wd WHERE  wd.user_user_id=:userId and YEAR(wd.date)=:year"
+					);
 			query.setParameter("userId", id);
 			query.setParameter("year", year);
 			hour = Integer.parseInt(query.getSingleResult().toString());

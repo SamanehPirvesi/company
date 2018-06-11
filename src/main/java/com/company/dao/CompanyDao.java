@@ -2,9 +2,11 @@ package com.company.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import com.company.model.Company;
 import com.company.model.User;
 
@@ -96,7 +98,7 @@ public class CompanyDao {
 	 * @param name
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
+
 	public boolean updateCompanyById(long id, String name) {
 		boolean res = false;
 		Session session = HibernateUtil.openSession();
@@ -106,8 +108,8 @@ public class CompanyDao {
 			tx.begin();
 			Query query = session
 					.createQuery("UPDATE Company SET company_name=:companyname WHERE company_id=:idnumber");
-			query.setString("companyname", name);
-			query.setLong("idnumber", id);
+			query.setParameter("companyname", name);
+			query.setParameter("idnumber", id);
 			query.executeUpdate();
 			res = true;
 		} catch (Exception ex) {
@@ -153,8 +155,8 @@ public class CompanyDao {
 		try {
 			tx = session.getTransaction();
 			tx.begin();
-			Query query = session.createQuery("FROM User where company_company_id=:companyid");
-			query.setLong("companyid", id);
+			Query<User> query = session.createQuery("FROM User where company_company_id=:companyid",User.class);
+			query.setParameter("companyid", id);
 			list = query.getResultList();
 			tx.commit();
 		} catch (Exception ex) {
